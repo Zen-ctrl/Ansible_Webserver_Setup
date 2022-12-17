@@ -65,32 +65,32 @@ To restart the Apache service, you can use the `service` module. Here is an exam
 ___
 #### Here is the complete playbook that puts all of these tasks together:
 
-`---`  
-`- hosts: all`
-`  become: true`  
-`tasks:`  
-`- name: Install Apache web server`  
-`apt:`  
-`name: apache2`  
-`state: present`  
-`- name: Start Apache`  
-`service:`  
-`name: apache2`  
-`state: started`  
-`- name: enable Apache`  
-`systemd:`  
-`name: apache2`  
-`state: enabled`  
-`- name: virtual host configuration file`  
-`template:`  
-`src: templates/virtualhost.conf.j2`  
-`dest: /etc/apache2/sites-available/example.com.conf`  
-`- name: Enable virtual host`  
-`apache2_module:`  
-`name: ssl`  
-`state: present`  
-`state: enabled`  
-`- name: Restart Apache`  
-`service:`  
-`name: apache2`  
-`state: restarted`
+---
+- hosts: all 
+  become: true
+  tasks:
+  - name: Install Apache web server
+    apt:
+      name: apache2
+      state: present
+  - name: Start Apache
+    service:
+      name: apache2
+      state: started
+  - name: enable Apache
+    systemd:
+      name: apache2
+      state: enabled
+  - name: virtual host configuration file
+    template:
+      src: templates/virtualhost.conf.j2
+      dest: /etc/apache2/sites-available/example.com.conf
+  - name: Enable virtual host
+    apache2_module:
+      name: ssl
+      state: present
+      state: enabled
+  - name: Restart Apache
+    service:
+      name: apache2
+      state: restarted
