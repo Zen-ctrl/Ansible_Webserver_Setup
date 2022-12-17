@@ -3,12 +3,12 @@
 ### 1.  Install Apache web server
 ___
 To install Apache, you can use the `apt` module. Here is an example playbook task:
-
+```
 `- name: Install Apache web server`  
 `apt:`  
 `name: apache2`  
 `state: present`
-
+```
 ### 2.  Start Apache service
 ___
 To start the Apache service, you can use the `service` module. Here is an example playbook task:
