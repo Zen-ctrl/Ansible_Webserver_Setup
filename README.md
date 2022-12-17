@@ -66,8 +66,8 @@ ___
 #### Here is the complete playbook that puts all of these tasks together:
 
 `---`  
-`- hosts: all
-   become: true`  
+`- hosts: all`
+`  become: true`  
 `tasks:`  
 `- name: Install Apache web server`  
 `apt:`  
